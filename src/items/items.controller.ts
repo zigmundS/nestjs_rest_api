@@ -10,6 +10,7 @@ import {
 import { CreateItemDto } from './dto/create-item.dto';
 import { ItemsService } from './items.service';
 import { Item } from './interfaces/item.interface';
+import {validate, validateOrReject, Contains, IsInt, Length, IsEmail, IsFQDN, IsDate, Min, Max} from "class-validator";
 
 @Controller('items')
 export class ItemsController {
@@ -26,7 +27,19 @@ export class ItemsController {
   }
 
   @Post()
-  create(@Body() createItemDto: CreateItemDto): Promise<Item> {
+  create(@Body() createItemDto: CreateItemDto): any {
+    validateOrReject(createItemDto).catch(errors => {
+      console.log("Promise rejected (validation failed). Errors: ", errors);
+    });
+    // validate(createItemDto)
+    // .then(errors => {
+    //   if (errors.length > 0) {
+    //       console.log("validation failed. errors: ", errors);
+    //   } else {
+    //     return this.itemsService.create(createItemDto);
+    //   }
+    // })
+    // .catch(err => console.log(err));
     return this.itemsService.create(createItemDto);
   }
 

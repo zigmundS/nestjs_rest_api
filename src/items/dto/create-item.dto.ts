@@ -1,5 +1,7 @@
+import { IsLowercase, IsString, Length } from 'class-validator';
+
 export class CreateItemDto {
-  readonly name: string;
-  readonly description: string;
-  readonly qty: number;
+  @IsString() readonly name: string;
+  @IsString() readonly description: string;
+  @IsString() readonly qty: number;
 }

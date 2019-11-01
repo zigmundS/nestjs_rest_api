@@ -1,0 +1,21 @@
+POST http://localhost:3000/items
+content-type: application/json
+
+{
+    "name": "Error",
+    "description": "test",
+    "qty": "true"
+}
+
+###
+
+GET http://localhost:3000/items
+
+###
+
+PUT http://localhost:3000/items/5dbaf00b93b10930e424d139
+content-type: application/json
+
+{
+    "name": "Legion 2"
+}
